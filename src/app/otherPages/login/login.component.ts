@@ -12,6 +12,7 @@ import { ServerUrl } from 'src/environments/environment';
 })
 export class LoginComponent implements OnInit {
   loginForm
+  url = ServerUrl.url
   constructor(private route: Router, private ajaxService: AjaxService, private formBuilder: FormBuilder, private router: Router, private toastService: ToastService) { }
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -21,13 +22,13 @@ export class LoginComponent implements OnInit {
   }
   goToSignup() {
     this.route.navigateByUrl('signup');
+    // this.route.navigateByUrl('main');
   }
 
   login() {
     let url = ServerUrl.url + '/validateUserCredentials';
     let body = this.loginForm.value;
     this.ajaxService.ajaxPost(url, body).subscribe(res => {
-      console.log(res);
       if (res.message == "invalid Credentials") {
         this.toastService.showToast(res.message + ", Try again!");
       } else {

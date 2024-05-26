@@ -12,9 +12,10 @@
 .toast {
     width: 90%;
     border-radius: 15px;
-    background-color: rgb(226, 226, 226);
+    background-color: rgba(100, 100, 100, 0.6);
     box-shadow: 0px 2px 5px rgb(102, 102, 102);
     font-size: 1.3em;
+    color: white;
     font-family: system-ui;
     display: flex;
     align-items: center;

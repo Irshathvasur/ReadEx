@@ -1,1 +1,53 @@
-<div class="view" style="background-color: var(--accent)"></div>
+<div class="view">
+  <div style="position: absolute; top: 20px; left: 20px; max-height: 18vh">
+    <i
+      (click)="goBack()"
+      class="pi pi-arrow-left"
+      style="font-size: 32px; color: var(--primary)"
+    ></i>
+  </div>
+  <h2
+    style="
+      margin-top: 2.5em;
+      padding-left: 25px;
+      font-size: 1.8em;
+      color: var(--accent);
+    "
+  >
+    Search Books
+  </h2>
+  <div
+    style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      border-radius: 0px;
+      background-color: var(--accent);
+    "
+  >
+    <div style="width: 95%">
+      <p-dropdown
+        [(ngModel)]="SelectedGenre"
+        (onChange)="getPosts($event)"
+        [options]="Genre"
+        optionLabel="name"
+        [filter]="true"
+        filterBy="name"
+        [showClear]="true"
+        placeholder="Select a Genre To search books"
+      ></p-dropdown>
+    </div>
+  </div>
+  <div style="overflow: scroll; height: 78 vh">
+    <div *ngIf="Posts">
+      <div
+        *ngFor="let post of Posts"
+        style="height: max-content; margin-top: -8px"
+      >
+        <app-postcomponent style="padding: 5px" [data]="post">
+        </app-postcomponent>
+      </div>
+    </div>
+  </div>
+</div>

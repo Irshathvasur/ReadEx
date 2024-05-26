@@ -1,0 +1,8 @@
+:host ::ng-deep .p-dropdown {
+    width: 100%;
+}
+
+:host ::ng-deep .p-dropdown .p-dropdown-panel {
+    max-width: 95vw;
+    overflow-x: auto;
+}

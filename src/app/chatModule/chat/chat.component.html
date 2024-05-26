@@ -1,0 +1,125 @@
+<div class="view" *ngIf="!inChat">
+  <div class="header">
+    <h1>CHATS</h1>
+  </div>
+  <div class="chatmenu">
+    <p-listbox
+      [options]="requests"
+      [listStyle]="{
+        height: '90vh',
+        'font-family': 'Comfortaa',
+      }"
+      [style]="{ width: '100%' }"
+    >
+      <ng-template let-req pTemplate="item">
+        <div (click)="goToChat(req)">
+          <p-avatar
+            label="{{ req.senderName.charAt(0).toUpperCase() }}"
+            styleClass="mr-2"
+            size="large"
+            [style]="{
+              'background-color': 'var(--primary)',
+              color: 'var(--background)'
+            }"
+            shape="circle"
+          ></p-avatar>
+          <div style="display: inline">
+            <h2
+              style="
+                margin-left: 10px;
+                display: inline;
+                font-weight: 400;
+                font-family: Arial, Helvetica, sans-serif;
+              "
+            >
+              {{ req.senderName }}
+            </h2>
+            <p style="margin: 10px">
+              Offered you a book for your book
+              {{ req.postid.title.substring(0, 25)
+              }}<span *ngIf="req.postid.title.length > 25">...</span>
+            </p>
+          </div>
+        </div>
+      </ng-template>
+    </p-listbox>
+  </div>
+</div>
+
+<div class="view" *ngIf="inChat">
+  <div class="header">
+    <div style="position: absolute; top: 30px; left: 30px; max-height: 18vh">
+      <i
+        (click)="goBack()"
+        class="pi pi-arrow-left"
+        style="font-size: 36px; color: var(--accent)"
+      ></i>
+    </div>
+    <h2 id="chath2">{{ chatingUser.senderName }}</h2>
+  </div>
+  <div class="chat">
+    <div class="posts" *ngIf="showcaseBook">
+      <div style="display: flex; justify-content: space-between; margin: 5px">
+        <div id="image-container">
+          <img
+            style="
+              min-height: 100px;
+              margin-left: 4px;
+              height: 100%;
+              width: 100%;
+              margin-top: 10px;
+            "
+            src="https://covers.openlibrary.org/b/id/{{
+              showcaseBook.coverid
+            }}-M.jpg"
+            (load)="onImageLoad()"
+          />
+          <div class="loader" [hidden]="!loading"></div>
+        </div>
+        <div style="margin-left: 10px; display: inline; width: 78%">
+          <h4 style="margin: 10px">Title</h4>
+          <p>{{ showcaseBook.title }}</p>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: row; height: 8vh">
+        <div style="width: 50%; margin-left: 10px">
+          <h4 style="margin: 10px">Author</h4>
+          <p>{{ showcaseBook.author }}</p>
+        </div>
+        <div style="width: 50%; margin-left: 2px">
+          <h4 style="margin: 10px">Genre</h4>
+          <p>{{ showcaseBook.genre.substring(0, 15) }}</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <input
+        type="text"
+        pInputText
+        [(ngModel)]="message"
+        placeholder="Send message"
+      />
+    </div>
+    <div class="send" (click)="sendMessage()">
+      <i
+        class="pi pi-send"
+        style="font-size: 36px; color: white; padding-right: 4px"
+      ></i>
+    </div>
+    <div class="books" (click)="openBooks()">
+      <i
+        class="pi pi-book"
+        style="font-size: 36px; color: white; padding-right: 4px"
+      ></i>
+    </div>
+    <ul class="chat-messages" #chatMessages>
+      <li
+        *ngFor="let message of messages"
+        class="message"
+        [ngClass]="{ sent: message.sent, received: !message.sent }"
+      >
+        <div class="message-content">{{ message.content }}</div>
+      </li>
+    </ul>
+  </div>
+</div>

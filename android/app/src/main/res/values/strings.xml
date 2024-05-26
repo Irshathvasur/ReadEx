@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">read-ex</string>
+    <string name="title_activity_main">read-ex</string>
+    <string name="package_name">com.project.readex</string>
+    <string name="custom_url_scheme">com.project.readex</string>
+</resources>

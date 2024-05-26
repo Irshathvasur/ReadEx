@@ -3,13 +3,17 @@
     border-radius: 36px;
     width: 60%;
     height: 60px;
-    text-align: center;
+    color: white;
+    font-size: 1.2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #searchBoxAligner {
     width: 100%;
     position: absolute;
-    bottom: 30px;
+    bottom: 20px;
     display: flex;
     justify-content: center;
 }

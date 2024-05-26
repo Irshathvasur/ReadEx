@@ -1,0 +1,15 @@
+:host ::ng-deep video {
+    object-fit: cover;
+    height: inherit;
+}
+
+:host ::ng-deep #cam div {
+    height: inherit;
+}
+
+.click {
+    padding: 15px;
+    border-radius: 50%;
+    background-color: transparent;
+    border-color: black;
+}

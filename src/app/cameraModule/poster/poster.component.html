@@ -1,0 +1,123 @@
+<div class="view">
+  <div style="display: block; height: 10vh">
+    <div style="position: absolute; top: 20px; left: 20px">
+      <i
+        (click)="goBack()"
+        class="pi pi-arrow-left"
+        style="font-size: 32px; color: var(--primary)"
+      ></i>
+      <h3
+        style="
+          padding-left: 15px;
+          font-size: 1.5em;
+          color: var(--accent);
+          display: inline;
+        "
+      >
+        Post your book
+      </h3>
+    </div>
+  </div>
+  <image-cropper
+    [imageURL]="image._imageAsDataUrl"
+    [maintainAspectRatio]="true"
+    (imageCropped)="imageCropped($event)"
+    [aspectRatio]="1 / 1"
+    [output]="'base64'"
+    format="png"
+  ></image-cropper>
+  <button (click)="post()">Done</button>
+  <div
+    style="
+      width: 100%;
+      margin-top: 15px;
+      box-shadow: 0px -5px 5px rgba(75, 75, 75, 0.35);
+      padding-top: 5px;
+      height: 42vh;
+      overflow: scroll;
+    "
+  >
+    <div
+      style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        border-radius: 0px;
+        background-color: var(--accent);
+      "
+    >
+      <span class="p-input-icon-left" style="width: 95%">
+        <i class="pi pi-search"></i>
+        <input
+          type="text"
+          style="width: 100%; height: 7vh; border-radius: 0px"
+          pInputText
+          placeholder="Search Books via Name, ISBN and more"
+          (input)="searchChanged($event)"
+        />
+      </span>
+    </div>
+    <form [formGroup]="postForm" style="margin-top: 10%; position: relative">
+      <div #loader class="loader">
+        <div class="square" id="sq1"></div>
+        <div class="square" id="sq2"></div>
+        <div class="square" id="sq3"></div>
+        <div class="square" id="sq4"></div>
+        <div class="square" id="sq5"></div>
+        <div class="square" id="sq6"></div>
+        <div class="square" id="sq7"></div>
+        <div class="square" id="sq8"></div>
+        <div class="square" id="sq9"></div>
+      </div>
+      <div style="margin: 10px; margin-top: 30px">
+        <div
+          *ngIf="postForm.value.coverid"
+          id="image-container"
+          style="margin-bottom: 30px"
+        >
+          <img
+            style="margin-left: 10px"
+            src="https://covers.openlibrary.org/b/id/{{
+              postForm.value.coverid
+            }}-M.jpg"
+            (load)="onImageLoad()"
+            alt=""
+          />
+          <div class="imageloader" [hidden]="!loading"></div>
+        </div>
+        <span class="p-float-label">
+          <input
+            pInputText
+            id="title"
+            formControlName="title"
+            style="width: 100%; height: 6vh"
+          />
+          <label htmlFor="title">Book Title</label>
+        </span>
+        <div style="margin-top: 30px">
+          <span class="p-float-label">
+            <input
+              pInputText
+              id="author"
+              formControlName="author"
+              style="width: 100%; height: 6vh"
+            />
+            <label htmlFor="author">Book Author</label>
+          </span>
+        </div>
+        <div style="margin-top: 30px">
+          <span class="p-float-label">
+            <input
+              pInputText
+              id="genre"
+              formControlName="genre"
+              style="width: 100%; height: 6vh"
+            />
+            <label htmlFor="genre">Book Genre</label>
+          </span>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
