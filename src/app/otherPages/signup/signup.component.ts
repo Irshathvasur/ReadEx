@@ -22,9 +22,9 @@ export class SignupComponent {
 
   ngOnInit() {
     this.signupForm = this.formBuilder.group({
-      firstname: ['', Validators.required],
+      firstname: [''],
       lastname: [''],
-      age: [],
+      age: [0],
       email: ['', [Validators.required, Validators.email]],
       username: ['', Validators.required],
       password: ['', Validators.required],
@@ -32,7 +32,6 @@ export class SignupComponent {
   }
 
   signUp() {
-    console.log(this.signupForm);
     let url = ServerUrl.url + '/createUser';
     this.ajaxService.ajaxPost(url, this.signupForm.value).subscribe(res => {
       if (res.message == "You are signed Up!") {

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule, HammerModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SwipeNavigationModule } from 'node_modules/swipe-navigation'
 import { MainViewModule } from './mainModule/main-view-module.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './otherPages/login/login.component';
@@ -13,29 +12,41 @@ import { ButtonModule } from 'primeng/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-
+import { CameraModule } from './cameraModule/camera/camera.module';
+import { SwipeNavigationModule } from 'node_modules/swipe-navigation';
+import { PosterComponent } from './cameraModule/poster/poster.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { AvatarModule } from 'primeng/avatar';
+import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
+import { OrderListModule } from 'primeng/orderlist';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignupComponent,
     RedirectPageComponent,
+    PosterComponent,
   ],
   imports: [
     CommonModule,
+    SwipeNavigationModule,
+    ImageCropperModule,
     HttpClientModule,
     BrowserModule,
     MainViewModule,
+    DynamicDialogModule,
     AppRoutingModule,
-    SwipeNavigationModule,
+    AvatarModule,
     HammerModule,
     InputTextModule,
     ButtonModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule
+    OrderListModule,
+    ReactiveFormsModule,
+    CameraModule
   ],
-  providers: [],
+  providers: [DialogService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -1,0 +1,43 @@
+<div>
+  <webcam
+    id="cam"
+    [height]="height"
+    [width]="width"
+    [imageQuality]="1"
+    [trigger]="triggerObservable"
+    (imageCapture)="handleImage($event)"
+    [allowCameraSwitch]="false"
+    [mirrorImage]="'never'"
+    style="height: 752px; display: block; position: relative"
+  ></webcam>
+</div>
+<div
+  style="
+    width: 100%;
+    height: 15%;
+    position: absolute;
+    bottom: 0px;
+    background-color: rgba(0, 0, 0, 0.8);
+  "
+></div>
+<button
+  #cameraClick
+  (click)="triggerSnapshot()"
+  style="position: absolute; bottom: 3%; left: 40%; filter: invert(1)"
+  class="click"
+>
+  <img
+    alt="click"
+    src="./../../../assets/cameraIcon.png"
+    height="40"
+    width="40"
+  />
+</button>
+<!-- <div class="snapshot" *ngIf="webcamImage">
+  <img
+    height="300"
+    width="412"
+    [src]="webcamImage.imageAsDataUrl"
+    alt="webcam image"
+  />
+</div> -->

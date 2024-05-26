@@ -1,2 +1,2 @@
 export const environment = {};
-export const ServerUrl = { url: 'http://localhost:8099' };
+export const ServerUrl = { url: 'http://localhost8099' };

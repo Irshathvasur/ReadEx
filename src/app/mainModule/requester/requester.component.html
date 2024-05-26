@@ -1,0 +1,51 @@
+<p-listbox
+  [options]="posts"
+  [listStyle]="{ 'max-height': '65vh', 'font-family': 'Comfortaa' }"
+  [style]="{ width: '100%' }"
+  [(ngModel)]="selectedPost"
+>
+  <ng-template let-post pTemplate="item">
+    <div class="posts">
+      <div style="display: flex; justify-content: space-between; margin: 5px">
+        <div id="image-container">
+          <img
+            style="
+              min-height: 100px;
+              margin-left: 4px;
+              height: 100%;
+              width: 100%;
+              margin-top: 10px;
+            "
+            src="https://covers.openlibrary.org/b/id/{{ post.coverid }}-M.jpg"
+            (load)="onImageLoad()"
+          />
+          <div class="loader" [hidden]="!loading"></div>
+        </div>
+        <div style="margin-left: 10px; display: inline; width: 78%">
+          <h4 style="margin: 10px">Title</h4>
+          <p>{{ post.title }}</p>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: row; height: 8vh">
+        <div style="width: 50%; margin-left: 10px">
+          <h4 style="margin: 10px">Author</h4>
+          <p>{{ post.author }}</p>
+        </div>
+        <div style="width: 50%; margin-left: 2px">
+          <h4 style="margin: 10px">Genre</h4>
+          <p>{{ post.genre.substring(0, 15) }}</p>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-listbox>
+<div style="display: flex; justify-content: space-between">
+  <button
+    [disabled]="!selectedPost"
+    class="Button"
+    style="margin: 10px; width: 98%; border: none"
+    (click)="exchange()"
+  >
+    {{ dataTransfer.getData().type }}
+  </button>
+</div>

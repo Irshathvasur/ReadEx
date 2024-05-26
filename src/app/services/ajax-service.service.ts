@@ -30,7 +30,9 @@ export class AjaxService {
   }
 
   ajaxPost(url: string, body: any): Observable<any> {
-    return this.http.post(url, body, httpOptionsWithJson).pipe(map(this.extractStringData), catchError(this.toast));
+    return this.http.post(url, body,
+
+    ).pipe(map(this.extractStringData), catchError(this.toast));
   }
 
 }

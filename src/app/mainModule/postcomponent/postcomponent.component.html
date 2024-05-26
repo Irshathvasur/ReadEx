@@ -1,0 +1,72 @@
+<p-card>
+  <div style="padding: 5px">
+    <p-avatar
+      label="{{ data.username.charAt(0).toUpperCase() }}"
+      styleClass="mr-2"
+      size="large"
+      [style]="{ 'background-color': '#2196F3', color: '#ffffff' }"
+      shape="circle"
+    ></p-avatar>
+    <h2 style="display: inline; font-weight: 400">
+      {{ data.username }}
+    </h2>
+    <div style="display: inline">
+      <div
+        *ngIf="data.userid != userId; else elseBlock"
+        style="display: inline"
+      >
+        <p style="display: inline">(Posted this)</p>
+      </div>
+      <ng-template #elseBlock
+        ><p style="display: inline">(You posted this)</p></ng-template
+      >
+    </div>
+  </div>
+  <img style="width: 100%; padding: 5px 0px" src="{{ data.image }}" />
+  <div style="display: flex; flex-direction: row; height: max-content">
+    <div style="width: 55%; margin-left: 10px">
+      <h4>Title</h4>
+      <p>{{ data.title }}</p>
+    </div>
+    <div style="width: 28%; margin-left: 10px">
+      <h4>Author</h4>
+      <p>{{ data.author }}</p>
+    </div>
+    <div style="width: 17%; margin-left: 2px">
+      <h4>Genre</h4>
+      <p>{{ data.genre.substring(0, 5) }}</p>
+    </div>
+  </div>
+  <div
+    style="
+      margin-top: 5px;
+      height: 60px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-right: 10px;
+    "
+  >
+    <div style="min-width: 18%">
+      <div id="image-container">
+        <img
+          style="margin-left: 10px"
+          src="https://covers.openlibrary.org/b/id/{{ data.coverid }}-S.jpg"
+          (load)="onImageLoad()"
+        />
+        <div class="loader" [hidden]="!loading"></div>
+      </div>
+    </div>
+    <div
+      *ngIf="data.userid != userId"
+      style="
+        width: 100%;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+      "
+    >
+      <div class="Button" style="width: 100%" (click)="show()">Exchange</div>
+    </div>
+  </div>
+</p-card>

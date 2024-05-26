@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SearchComponent } from './search/search.component';
 import { MainComponent } from './main/main.component';
 
+
 const routes: Routes = [
     {
         path: 'search',
